@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ticketgo.mapper.ShowingMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ticketgo.entity.Showing">
+        <id column="showing_id" property="showingId" />
+        <result column="movie_id" property="movieId" />
+        <result column="theather_id" property="theatherId" />
+        <result column="price" property="price" />
+        <result column="start_time" property="startTime" />
+        <result column="is_released" property="isReleased" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        showing_id, movie_id, theather_id, price, start_time, is_released
+    </sql>
+
+</mapper>
