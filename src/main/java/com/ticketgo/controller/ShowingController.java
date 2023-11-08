@@ -3,6 +3,7 @@ package com.ticketgo.controller;
 
 import com.ticketgo.common.Result;
 import com.ticketgo.entity.Movie;
+import com.ticketgo.entity.Seat;
 import com.ticketgo.entity.Showing;
 import com.ticketgo.service.MovieService;
 import com.ticketgo.service.SeatService;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 
 @RestController
@@ -40,7 +43,7 @@ public class ShowingController {
 
         //3. 如果时间段已安排场次，则报错
         if(exist){
-            return Result.error("当前时间段存在场次");
+            return Result.error("The current time slot has existing showtimes.");
         }
 
         //4. 若没安排，则新增场次
@@ -62,7 +65,7 @@ public class ShowingController {
         boolean exist = showingService.ifExist(showing);
         //2. 如果时间段已安排场次，则报错
         if(exist){
-            return Result.error("当前时间段存在场次");
+            return Result.error("The current time slot has existing showtimes.");
         }
         //3. 若不存在场次，则继续修改
         log.info("修改影院信息{}",showing);
@@ -73,6 +76,15 @@ public class ShowingController {
     /**
      * 场次详情（选座图）
      */
+    @GetMapping("/seats")
+    @Operation(description = "查看场次的座位")
+    public Result<List<Seat>> seats(Integer showingId){
+
+        List<Seat> seats = seatService.getSeatByShowingId(showingId);
+
+        return Result.success(seats);
+
+    }
 
 
 }

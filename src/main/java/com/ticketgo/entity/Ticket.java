@@ -2,10 +2,14 @@ package com.ticketgo.entity;
 
 import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.ticketgo.common.Result;
+import com.ticketgo.service.status.Status;
+import com.ticketgo.strategy.PriceStrategy;
+
 import java.time.LocalDateTime;
-import java.io.Serializable;
 
 /**
  * <p>
@@ -30,7 +34,9 @@ public class Ticket extends Model<Ticket> {
 
     private BigDecimal price;
 
-    private Integer status;
+   private Integer status;
+    @TableField(exist = false)
+    private Status ticketStatus;
 
     private LocalDateTime createTime;
 
@@ -40,6 +46,29 @@ public class Ticket extends Model<Ticket> {
 
     private LocalDateTime cancelTime;
 
+    //价格策略，按类型出票
+    @TableField(exist = false)
+    private PriceStrategy priceStrategy;
+
+    //状态模式
+    public Result<String> pay(){
+
+        return this.ticketStatus.pay();
+    }
+    public Result<String> cancel(){
+        return this.ticketStatus.cancel();
+    }
+    public Result<String> validate(){
+        return this.ticketStatus.validate();
+    }
+
+    public PriceStrategy getPriceStrategy() {
+        return priceStrategy;
+    }
+
+    public void setPriceStrategy(PriceStrategy priceStrategy) {
+        this.priceStrategy = priceStrategy;
+    }
 
     public Long getTicketId() {
         return ticketId;
@@ -81,13 +110,6 @@ public class Ticket extends Model<Ticket> {
         this.price = price;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
 
     public LocalDateTime getCreateTime() {
         return createTime;
@@ -121,6 +143,22 @@ public class Ticket extends Model<Ticket> {
         this.cancelTime = cancelTime;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Status getTicketStatus() {
+        return ticketStatus;
+    }
+
+    public void setTicketStatus(Status ticketStatus) {
+        this.ticketStatus = ticketStatus;
+        this.ticketStatus.setTicket(this);
+    }
 
     @Override
     public String toString() {

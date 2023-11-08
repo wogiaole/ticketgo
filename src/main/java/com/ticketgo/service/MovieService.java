@@ -14,5 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface MovieService extends IService<Movie> {
 
     public int getDuration(double movieId);
+    public boolean save(Movie movie);
 
 }

@@ -3,8 +3,10 @@ package com.ticketgo.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.ticketgo.service.observer.Observer;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.io.Serializable;
 
 /**
  * <p>
@@ -14,7 +16,7 @@ import java.io.Serializable;
  * @author ${author}
  * @since 2023-11-05
  */
-public class User extends Model<User> {
+public class User extends Model<User> implements Observer {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,6 +37,15 @@ public class User extends Model<User> {
 
     private Boolean isDeleted;
 
+    private LocalDate birthday;
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
 
     public Long getUserId() {
         return userId;

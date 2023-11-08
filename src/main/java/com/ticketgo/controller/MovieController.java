@@ -36,8 +36,6 @@ public class MovieController {
     @Operation(description = "新增电影")
     public Result<String> save(@RequestBody Movie movie){
 
-
-        movie.setIsReleased(true);
         movie.setCreateTime(LocalDateTime.now());
         log.info("新增电影 info: "+movie);
         movieService.save(movie);

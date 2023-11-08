@@ -1,5 +1,6 @@
 package com.ticketgo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ticketgo.common.Result;
 import com.ticketgo.entity.Movie;
 import com.ticketgo.entity.Seat;
@@ -16,6 +17,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
+import static com.ticketgo.constant.SeatStatusConstant.*;
+
 /**
  * <p>
  *  服务实现类
@@ -30,9 +35,6 @@ public class SeatServiceImpl extends ServiceImpl<SeatMapper, Seat> implements Se
     @Autowired
     private TheatherService theatherService;
 
-/*
-    @Autowired
-    private TheatherMapper theatherMapper;*/
 
     /**
      * 生成座位
@@ -67,6 +69,42 @@ public class SeatServiceImpl extends ServiceImpl<SeatMapper, Seat> implements Se
         }
         System.out.println("生成座位数："+count);
 
+    }
+
+    @Override
+    public List<Seat> getSeatByShowingId(Integer showingId) {
+
+        //条件构造器
+        LambdaQueryWrapper<Seat> queryWrapper = new LambdaQueryWrapper<>();
+
+        //movieId->查找showing
+        queryWrapper.eq(Seat::getShowingId, showingId);
+
+        List<Seat> list = this.list(queryWrapper);
+
+        return list;
+    }
+
+    @Override
+    public void bookSeat(Long seatId) {
+        Seat seat = this.getById(seatId);
+        seat.setStatus(BOOKED);
+        this.updateById(seat);
+    }
+
+    @Override
+    public void soldSeat(Long seatId) {
+        Seat seat = this.getById(seatId);
+        seat.setStatus(SOLD);
+        this.updateById(seat);
+
+    }
+
+    @Override
+    public void releaseSeat(Long seatId) {
+        Seat seat = this.getById(seatId);
+        seat.setStatus(AVAILABLE);
+        this.updateById(seat);
     }
 
 

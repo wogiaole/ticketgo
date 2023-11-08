@@ -13,13 +13,25 @@ spring:
     #url: jdbc:mysql://localhost:3306/goticket
     username: root
     password: root
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: helloticketgo@gmail.com
+    password: ttjc sbnj mrkc rsjf
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
-
 
 #springdoc相关配置
 springdoc:
@@ -40,3 +52,4 @@ knife4j:
   setting:
     language: zh_cn
     swagger-model-name: 实体类
+

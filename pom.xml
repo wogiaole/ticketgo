@@ -98,13 +98,6 @@
             <version>2.0</version>
         </dependency>
 
-<!--        &lt;!&ndash;添加Knife4j依赖&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.github.xiaoymin</groupId>-->
-<!--            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>-->
-<!--            <version>4.1.0</version>-->
-<!--        </dependency>-->
-        <!-- Mybatis-Plus  自动生成实体类-->
 
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
@@ -112,6 +105,14 @@
             <version>4.1.0</version>
         </dependency>
         <!--springBoot相关配置忽略-->
+
+        <!--send mail-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-mail</artifactId>
+            </dependency>
+
+
 
     </dependencies>
 
@@ -124,5 +125,7 @@
             </plugin>
         </plugins>
     </build>
+
+
 
 </project>
