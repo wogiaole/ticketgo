@@ -6,16 +6,17 @@ import com.ticketgo.service.status.impl.CompletedStatus;
 import com.ticketgo.service.status.impl.PaidStatus;
 import com.ticketgo.service.status.impl.UnpaidStatus;
 
+//ticket的状态映射：status和int
 public class StatusMapper {
     public static Status mapIntToStatus(int status) {
         switch (status) {
-            case 1: // 0 represents unpaid status
+            case 1:
                 return new UnpaidStatus();
-            case 2: // 1 represents paid status
+            case 2:
                 return new PaidStatus();
-            case 3: // 2 represents cancelled status
+            case 3:
                 return new CompletedStatus();
-            case 4: // 2 represents cancelled status
+            case 4:
                 return new CanceledStatus();
             // Add more cases for other status values as needed
             default:

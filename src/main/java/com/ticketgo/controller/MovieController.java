@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ticketgo.common.Result;
 import com.ticketgo.entity.Movie;
 import com.ticketgo.entity.Showing;
+import com.ticketgo.service.CommentService;
 import com.ticketgo.service.MovieService;
 import com.ticketgo.service.ShowingService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,6 +28,7 @@ public class MovieController {
 
     @Autowired
     private ShowingService showingService;
+
     /**
      * 新增电影
      * @param movie
@@ -92,7 +94,6 @@ public class MovieController {
 
         Movie movie = movieService.getById(movieId);
 
-
         return Result.success(movie);
     }
 
@@ -114,7 +115,7 @@ public class MovieController {
      */
     @PutMapping
     @Operation(description = "修改电影")
-    public Result<String> updateUser(@RequestBody Movie movie){
+    public Result<String> updatMovie(@RequestBody Movie movie){
         log.info("修改影院信息{}",movie);
         movieService.updateById(movie);
         return Result.success("movie modify successfully");

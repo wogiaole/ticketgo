@@ -62,8 +62,9 @@ public class AdminController {
             return Result.error("密码错误");//4.比对失败，返回错误结果
 
             }else{//5.比对成功，将员工id存入session+返回成功结果
-                request.getSession().setAttribute("admin",admResult.getAdminId());
-                return Result.success(admResult);
+                request.getSession().setAttribute("adminId",admResult.getAdminId());
+           // Object admin1 = request.getSession().getAttribute("admin");
+            return Result.success(admResult);
             }
         }
 
@@ -76,7 +77,7 @@ public class AdminController {
     @Operation(description = "admin登出")
 
     public Result<String> logout(HttpServletRequest request){
-        request.getSession().removeAttribute("admin");//1
+        request.getSession().removeAttribute("adminId");//1
         return Result.success("退出成功");//2
     }
 

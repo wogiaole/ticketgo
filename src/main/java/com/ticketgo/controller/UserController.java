@@ -10,6 +10,7 @@ import com.ticketgo.entity.User;
 import com.ticketgo.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +74,8 @@ public class UserController {
             return Result.error("密码错误");//4.比对失败，返回错误结果
 
         }else{//5.比对成功，将员工id存入session+返回成功结果
-            request.getSession().setAttribute("admin",userResult.getUserId());
+            request.getSession().setAttribute("userId",userResult.getUserId());
+            //request.getSession().setAttribute("userName",userResult.getUserName());
             return Result.success(userResult);
         }
     }
@@ -86,7 +88,11 @@ public class UserController {
     @PostMapping("/logout")
     @Operation(description = "用户登出")
     public Result<String> logout(HttpServletRequest request){
-        request.getSession().removeAttribute("admin");//1
+       /* HttpSession session = request.getSession();
+        Long id = (Long)session.getAttribute("userId");
+        String name = (String)session.getAttribute("userName");*/
+
+        request.getSession().removeAttribute("userId");//1
         return Result.success("退出成功");//2
     }
 

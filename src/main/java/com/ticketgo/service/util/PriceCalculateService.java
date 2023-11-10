@@ -17,6 +17,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 
+/**
+ * 订票后，价格计算
+ */
 @Service
 @Slf4j
 public class PriceCalculateService {

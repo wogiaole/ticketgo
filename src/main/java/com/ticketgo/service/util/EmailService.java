@@ -8,7 +8,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-
+/*
+发送邮件，通知用户电影上新
+ */
 @Service
 public class EmailService {
 

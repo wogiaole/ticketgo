@@ -31,7 +31,34 @@ public class Comment extends Model<Comment> {
     private String content;
 
     private LocalDateTime createTime;
+    private LocalDateTime deleteTime;
 
+    private Long adminId;
+    private Boolean isDeleted;
+
+    public LocalDateTime getDeleteTime() {
+        return deleteTime;
+    }
+
+    public void setDeleteTime(LocalDateTime deleteTime) {
+        this.deleteTime = deleteTime;
+    }
+
+    public Long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
 
     public Long getCommentId() {
         return commentId;
@@ -82,16 +109,18 @@ public class Comment extends Model<Comment> {
     }
 
 
-
     @Override
     public String toString() {
         return "Comment{" +
-        "commentId=" + commentId +
-        ", userId=" + userId +
-        ", movieId=" + movieId +
-        ", score=" + score +
-        ", content=" + content +
-        ", createTime=" + createTime +
-        "}";
+                "commentId=" + commentId +
+                ", userId=" + userId +
+                ", movieId=" + movieId +
+                ", score=" + score +
+                ", content='" + content + '\'' +
+                ", createTime=" + createTime +
+                ", deleteTime=" + deleteTime +
+                ", adminId=" + adminId +
+                ", isDeleted=" + isDeleted +
+                '}';
     }
 }

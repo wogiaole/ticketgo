@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Slf4j
 public class AdultPriceStrategy extends PriceStrategy{
-    //普通不打折
+    //成人票不打折
     @Override
     public BigDecimal calculatePrice() {
         log.info("成人：无折扣");
