@@ -1,7 +1,7 @@
-package com.ticketgo.service.status.impl;
+package com.ticketgo.pattern.status.impl;
 
 import com.ticketgo.common.Result;
-import com.ticketgo.service.status.Status;
+import com.ticketgo.pattern.status.Status;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class UnpaidStatus extends Status {
         super.ticket.setStatus(PAID);
         super.ticket.setPayTime(LocalDateTime.now());
 
-        return Result.success("支付成功");
+        return Result.success("pay success");
 
     }
 
@@ -32,13 +32,13 @@ public class UnpaidStatus extends Status {
         super.ticket.setCancelTime(LocalDateTime.now());
 
 
-        return Result.success("取消成功");
+        return Result.success("Cancel success");
     }
 
     @Override
     public Result<String> validate() {
 
-        return Result.error("未支付的订单无法验票！");
+        return Result.error("Unpaid ticket cannot be verified!");
 
     }
 }

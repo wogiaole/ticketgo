@@ -1,6 +1,6 @@
-package com.ticketgo.decorator;
+package com.ticketgo.pattern.decorator;
 
-import com.ticketgo.strategy.PriceStrategy;
+import com.ticketgo.pattern.strategy.PriceStrategy;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;

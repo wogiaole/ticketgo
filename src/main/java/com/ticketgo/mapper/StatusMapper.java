@@ -1,10 +1,10 @@
 package com.ticketgo.mapper;
 
-import com.ticketgo.service.status.Status;
-import com.ticketgo.service.status.impl.CanceledStatus;
-import com.ticketgo.service.status.impl.CompletedStatus;
-import com.ticketgo.service.status.impl.PaidStatus;
-import com.ticketgo.service.status.impl.UnpaidStatus;
+import com.ticketgo.pattern.status.Status;
+import com.ticketgo.pattern.status.impl.CanceledStatus;
+import com.ticketgo.pattern.status.impl.CompletedStatus;
+import com.ticketgo.pattern.status.impl.PaidStatus;
+import com.ticketgo.pattern.status.impl.UnpaidStatus;
 
 //ticket的状态映射：status和int
 public class StatusMapper {

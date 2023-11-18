@@ -1,4 +1,4 @@
-package com.ticketgo.service.util;
+package com.ticketgo.service.impl;
 
 import com.ticketgo.service.UserService;
 import jakarta.mail.MessagingException;

@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.ticketgo.common.Result;
-import com.ticketgo.service.status.Status;
-import com.ticketgo.strategy.PriceStrategy;
+import com.ticketgo.pattern.status.Status;
+import com.ticketgo.pattern.strategy.PriceStrategy;
 
 import java.time.LocalDateTime;
 

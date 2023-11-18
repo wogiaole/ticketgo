@@ -62,12 +62,12 @@ public class SeatServiceImpl extends ServiceImpl<SeatMapper, Seat> implements Se
                 seat.setColIndex(j);
                 seat.setStatus(1);
                 seat.setShowingId(showingId);
-                log.info("新增座位 "+seat);
+                //log.info("新增座位 "+seat);
                 count++;
                 this.save(seat);
             }
         }
-        System.out.println("生成座位数："+count);
+        System.out.println("generate seats："+count);
 
     }
 

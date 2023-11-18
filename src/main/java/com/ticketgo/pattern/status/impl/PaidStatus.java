@@ -1,7 +1,7 @@
-package com.ticketgo.service.status.impl;
+package com.ticketgo.pattern.status.impl;
 
 import com.ticketgo.common.Result;
-import com.ticketgo.service.status.Status;
+import com.ticketgo.pattern.status.Status;
 
 import java.time.LocalDateTime;
 
@@ -18,7 +18,7 @@ public class PaidStatus extends Status {
     @Override
     public Result<String> cancel() {
 
-        return Result.error("已支付，无法取消");
+        return Result.error("Already paid, unable to cancel");
     }
 
     @Override
@@ -26,6 +26,6 @@ public class PaidStatus extends Status {
         super.ticket.setStatus(COMPLETED);
         super.ticket.setValidateTime(LocalDateTime.now());
 
-        return Result.success("验票成功");
+        return Result.success("validate success");
     }
 }

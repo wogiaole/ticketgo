@@ -7,7 +7,7 @@ import com.ticketgo.mapper.MovieMapper;
 import com.ticketgo.service.MovieService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ticketgo.service.UserService;
-import com.ticketgo.service.observer.Subject;
+import com.ticketgo.pattern.observer.Subject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,7 +55,7 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
         //新增电影
         boolean isSave = super.save(movie);
 
-        log.info("电影状态={}",movie.getIsReleased());
+        log.info("Is new movie release={}",movie.getIsReleased());
 
         //如果电影是上架状态,则邮件通知订阅用户
         if(movie.getIsReleased()){
@@ -64,12 +64,12 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
             //条件构造器
             LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
 
-            //基于Id,查找Movie
+            //find users that allow notify
             queryWrapper.eq(User::getAllowNofity, true);
 
             List<User> list = userService.list(queryWrapper);
 
-            //2. 将observer加入subject中
+            //2. add user into observer list
             for (User user:list){
                 log.info("observer={}",user.getUserName());
                 movieSubject.addObserver(user);

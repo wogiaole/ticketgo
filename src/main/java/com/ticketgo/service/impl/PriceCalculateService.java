@@ -1,14 +1,14 @@
-package com.ticketgo.service.util;
+package com.ticketgo.service.impl;
 
-import com.ticketgo.decorator.BirthdayDecorator;
-import com.ticketgo.decorator.ChristmasDecorator;
+import com.ticketgo.pattern.decorator.BirthdayDecorator;
+import com.ticketgo.pattern.decorator.ChristmasDecorator;
 import com.ticketgo.entity.Showing;
 import com.ticketgo.entity.Ticket;
 import com.ticketgo.entity.User;
-import com.ticketgo.factory.PriceStrategyFactory;
+import com.ticketgo.pattern.factory.PriceStrategyFactory;
 import com.ticketgo.service.ShowingService;
 import com.ticketgo.service.UserService;
-import com.ticketgo.strategy.PriceStrategy;
+import com.ticketgo.pattern.strategy.PriceStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +30,7 @@ public class PriceCalculateService {
     @Autowired
     private PriceStrategyFactory priceStrategyFactory;
 
+    //check if today is birthday
     public boolean isBirthday(LocalDate birthDate) {
         // 获取今天的日期
         LocalDate today = LocalDate.now();
@@ -38,6 +39,7 @@ public class PriceCalculateService {
         return today.getMonth() == birthDate.getMonth() && today.getDayOfMonth() == birthDate.getDayOfMonth();
     }
 
+    //check if today is Christmas
     public boolean isChristmas() {
         // 获取今天的日期
         LocalDate today = LocalDate.now();
@@ -47,35 +49,32 @@ public class PriceCalculateService {
 
     }
 
+    //calculate final price
     public BigDecimal calculatePrice(Ticket ticket){
 
         User user = userService.getById(ticket.getUserId());
         Showing showing = showingService.getById(ticket.getShowingId());
 
-        //设置价格
-        //1. 工厂模式+策略模式：基于用户类型，设置价格策略类型
-
+        //1. factory, strategy: Set price strategy based on user type
         PriceStrategy priceStrategy1 = priceStrategyFactory.chooseStrategy(user.getType());
         ticket.setPriceStrategy(priceStrategy1);
-        //设置原价
-
+        //get price after applying strategy
         BigDecimal price = showing.getPrice();
         log.info("The original price is:{}",price);
         ticket.getPriceStrategy().setPrice(price);
 
-        //2. 装饰器模式：根据节日，叠加计算优惠
+        //2. Decorator: calculate discount based on holidays
         PriceStrategy priceStrategy = ticket.getPriceStrategy();
 
-        //Christmas discount
+        //if Christmas discount
         if(isChristmas()){
-          //  log.info("圣诞");
-            //如果当天圣诞节
+          //  log.info("Christmas");
+
             priceStrategy = new ChristmasDecorator(priceStrategy);
         }
-        //birthday discount
+        //if birthday discount
         if(isBirthday(user.getBirthday())){
-          //  log.info("生日");
-            //如果当天生日
+          //  log.info("Birthday);
             priceStrategy = new BirthdayDecorator(priceStrategy);
         }
 

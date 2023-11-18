@@ -1,9 +1,9 @@
-package com.ticketgo.factory;
+package com.ticketgo.pattern.factory;
 
-import com.ticketgo.strategy.AdultPriceStrategy;
-import com.ticketgo.strategy.ChildPriceStrategy;
-import com.ticketgo.strategy.PriceStrategy;
-import com.ticketgo.strategy.StudentPriceStrategy;
+import com.ticketgo.pattern.strategy.AdultPriceStrategy;
+import com.ticketgo.pattern.strategy.ChildPriceStrategy;
+import com.ticketgo.pattern.strategy.PriceStrategy;
+import com.ticketgo.pattern.strategy.StudentPriceStrategy;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -26,7 +26,7 @@ public class PriceStrategyFactory implements InitializingBean {
     }
 
 
-    public static PriceStrategy setStrategy(Integer userType){
+  /*  public static PriceStrategy setStrategy(Integer userType){
         if(userType==2){
             return new StudentPriceStrategy();
         }else if(userType==3){
@@ -35,15 +35,15 @@ public class PriceStrategyFactory implements InitializingBean {
             return new AdultPriceStrategy();
         }
 
-    }
+    }*/
 
     @Override
     public void afterPropertiesSet() throws Exception {
 
-        //从IOC中获取PriceStrage类型的bean对象
+        //get PriceStrage bean from IOC
         Map<String, PriceStrategy> priceStrategyMap = applicationContext.getBeansOfType(PriceStrategy.class);
 
-        //
+        //a mapping between user type and priceStrategy
         priceStrategyMap.forEach((key,val)->priceStrategies.put(val.mark(),val));
 
     }

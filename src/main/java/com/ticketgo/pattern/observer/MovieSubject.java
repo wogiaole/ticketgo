@@ -1,6 +1,6 @@
-package com.ticketgo.service.observer;
+package com.ticketgo.pattern.observer;
 
-import com.ticketgo.service.util.EmailService;
+import com.ticketgo.service.impl.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +39,7 @@ public class MovieSubject implements Subject {
             body = body.replace("{{movieName}}", movieName);
 
             emailService.sendEmail(to, subject, body);
-            log.info("邮件发送成功");
+            log.info("email sent successfully");
         }
 
 

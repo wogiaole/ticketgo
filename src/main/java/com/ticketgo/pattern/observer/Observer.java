@@ -1,4 +1,4 @@
-package com.ticketgo.service.observer;
+package com.ticketgo.pattern.observer;
 
 public interface Observer {
     String getEmail();

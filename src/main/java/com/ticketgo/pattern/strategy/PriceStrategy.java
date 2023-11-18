@@ -1,4 +1,4 @@
-package com.ticketgo.strategy;
+package com.ticketgo.pattern.strategy;
 
 import java.math.BigDecimal;
 

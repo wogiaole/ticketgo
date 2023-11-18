@@ -1,4 +1,4 @@
-package com.ticketgo.strategy;
+package com.ticketgo.pattern.strategy;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -3,7 +3,7 @@ package com.ticketgo.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.ticketgo.service.observer.Observer;
+import com.ticketgo.pattern.observer.Observer;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
