@@ -7,17 +7,22 @@ import java.math.BigDecimal;
 
 @Slf4j
 public class ChristmasDecorator extends PriceDecorator {
-    private static final int COST = 3;
+   // private static final int COST = 3;
     private PriceStrategy priceStrategy;
 
     public ChristmasDecorator(PriceStrategy priceStrategy) {
         this.priceStrategy = priceStrategy;
     }
 
+    @Override
+    public Integer mark() {
+        return null;
+    }
+
     //圣诞节打八折
     @Override
     public BigDecimal calculatePrice() {
-        log.info("圣诞节：打8折");
+        log.info("Christmas: 20% off");
         BigDecimal afterPrice = priceStrategy.calculatePrice().multiply(new BigDecimal("0.8"));
         priceStrategy.setPrice(afterPrice);
         return afterPrice;

@@ -44,6 +44,8 @@ public class Ticket extends Model<Ticket> {
 
     private LocalDateTime validateTime;
 
+    private Long validateAdminId;
+
     private LocalDateTime cancelTime;
 
     //价格策略，按类型出票
@@ -153,6 +155,14 @@ public class Ticket extends Model<Ticket> {
 
     public Status getTicketStatus() {
         return ticketStatus;
+    }
+
+    public Long getValidateAdminId() {
+        return validateAdminId;
+    }
+
+    public void setValidateAdminId(Long validateAdminId) {
+        this.validateAdminId = validateAdminId;
     }
 
     public void setTicketStatus(Status ticketStatus) {

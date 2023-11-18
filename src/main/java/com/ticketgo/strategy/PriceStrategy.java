@@ -13,5 +13,7 @@ public abstract class PriceStrategy {
         this.price = price;
     }
 
+    public abstract Integer mark();
+
     public abstract BigDecimal calculatePrice();
 }

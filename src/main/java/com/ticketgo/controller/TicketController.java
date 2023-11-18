@@ -6,6 +6,7 @@ import com.ticketgo.entity.Ticket;
 import com.ticketgo.service.SeatService;
 import com.ticketgo.service.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -56,11 +57,11 @@ public class TicketController {
 
     @PostMapping("/validate")
     @Operation(description = "验票")
-    public Result<String> validate(@RequestBody Ticket ticket){
-
+    public Result<String> validate(@RequestBody Ticket ticket, HttpServletRequest request){
+        Long adminId = (Long)request.getSession().getAttribute("adminId");//1
         // log.info("打印DTO{}",ticketDTO);
 
-        return ticketService.validate(ticket.getTicketId());
+        return ticketService.validate(ticket.getTicketId(),adminId);
     }
 
     @PostMapping("/cancel")

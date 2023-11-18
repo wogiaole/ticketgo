@@ -27,6 +27,8 @@ public class PriceCalculateService {
     private UserService userService;
     @Autowired
     private ShowingService showingService;
+    @Autowired
+    private PriceStrategyFactory priceStrategyFactory;
 
     public boolean isBirthday(LocalDate birthDate) {
         // 获取今天的日期
@@ -52,28 +54,31 @@ public class PriceCalculateService {
 
         //设置价格
         //1. 工厂模式+策略模式：基于用户类型，设置价格策略类型
-        ticket.setPriceStrategy(PriceStrategyFactory.setStrategy(user.getType()));
-        //注入原价
+
+        PriceStrategy priceStrategy1 = priceStrategyFactory.chooseStrategy(user.getType());
+        ticket.setPriceStrategy(priceStrategy1);
+        //设置原价
 
         BigDecimal price = showing.getPrice();
-        log.info("原价为：{}",price);
+        log.info("The original price is:{}",price);
         ticket.getPriceStrategy().setPrice(price);
 
         //2. 装饰器模式：根据节日，叠加计算优惠
         PriceStrategy priceStrategy = ticket.getPriceStrategy();
 
-        //圣诞节优惠
+        //Christmas discount
         if(isChristmas()){
           //  log.info("圣诞");
             //如果当天圣诞节
             priceStrategy = new ChristmasDecorator(priceStrategy);
         }
-        //生日优惠
+        //birthday discount
         if(isBirthday(user.getBirthday())){
           //  log.info("生日");
             //如果当天生日
             priceStrategy = new BirthdayDecorator(priceStrategy);
         }
+
 
         BigDecimal cost = priceStrategy.calculatePrice();
         return cost;

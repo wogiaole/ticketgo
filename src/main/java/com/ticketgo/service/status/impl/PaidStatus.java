@@ -12,7 +12,7 @@ public class PaidStatus extends Status {
 
     @Override
     public Result<String> pay() {
-        return Result.error("已支付，请刷新重试！");
+        return Result.error("Has paid, please refresh and try again!");
     }
 
     @Override

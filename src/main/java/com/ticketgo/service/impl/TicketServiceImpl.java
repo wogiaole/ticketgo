@@ -4,7 +4,6 @@ import com.ticketgo.common.Result;
 import com.ticketgo.decorator.BirthdayDecorator;
 import com.ticketgo.decorator.ChristmasDecorator;
 import com.ticketgo.entity.*;
-import com.ticketgo.factory.PriceStrategyFactory;
 import com.ticketgo.mapper.StatusMapper;
 import com.ticketgo.mapper.TicketMapper;
 import com.ticketgo.service.*;
@@ -68,13 +67,14 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     }
 
     @Override
-    public Result<String> validate(Long ticketId) {
+    public Result<String> validate(Long ticketId,Long adminId) {
 
         Ticket ticket = this.getById(ticketId);
         Integer status = ticket.getStatus();
         log.info("当前票的状态为{}",status);
         //为ticket设置新数据
         ticket.setTicketStatus(StatusMapper.mapIntToStatus(status));
+        ticket.setValidateAdminId(adminId);
 
         Result<String> r = ticket.validate();
 
