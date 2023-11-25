@@ -39,6 +39,7 @@ public class MovieSubject implements Subject {
             body = body.replace("{{movieName}}", movieName);
 
             emailService.sendEmail(to, subject, body);
+            log.info("email:{}",to);
             log.info("email sent successfully");
         }
 

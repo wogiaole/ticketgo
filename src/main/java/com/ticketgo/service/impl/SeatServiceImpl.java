@@ -1,25 +1,20 @@
 package com.ticketgo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.ticketgo.common.Result;
-import com.ticketgo.entity.Movie;
 import com.ticketgo.entity.Seat;
 import com.ticketgo.entity.Showing;
 import com.ticketgo.entity.Theather;
 import com.ticketgo.mapper.SeatMapper;
-import com.ticketgo.mapper.TheatherMapper;
 import com.ticketgo.service.SeatService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ticketgo.service.TheatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-import static com.ticketgo.constant.SeatStatusConstant.*;
+import static com.ticketgo.util.constant.SeatStatusConstant.*;
 
 /**
  * <p>

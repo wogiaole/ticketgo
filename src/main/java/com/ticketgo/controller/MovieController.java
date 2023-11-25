@@ -3,10 +3,9 @@ package com.ticketgo.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ticketgo.common.Result;
+import com.ticketgo.util.common.Result;
 import com.ticketgo.entity.Movie;
 import com.ticketgo.entity.Showing;
-import com.ticketgo.service.CommentService;
 import com.ticketgo.service.MovieService;
 import com.ticketgo.service.ShowingService;
 import io.swagger.v3.oas.annotations.Operation;

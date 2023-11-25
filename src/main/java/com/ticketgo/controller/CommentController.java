@@ -3,11 +3,10 @@ package com.ticketgo.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ticketgo.common.Result;
+import com.ticketgo.util.common.Result;
 import com.ticketgo.entity.*;
 import com.ticketgo.service.CommentService;
 import com.ticketgo.service.SeatService;
-import com.ticketgo.service.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -15,11 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.stereotype.Controller;
-
 import java.time.LocalDateTime;
-
-import static com.ticketgo.constant.TicketStatusConstant.UNPAID;
 
 /**
  * <p>

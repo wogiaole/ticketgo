@@ -50,6 +50,8 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
         }
     }
 
+
+    //新增电影的业务代码
     @Override
     public boolean save(Movie movie) {
         //新增电影

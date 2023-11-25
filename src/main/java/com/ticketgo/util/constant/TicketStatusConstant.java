@@ -1,4 +1,4 @@
-package com.ticketgo.constant;
+package com.ticketgo.util.constant;
 
 public class TicketStatusConstant {
     public static final Integer UNPAID = 1;

@@ -1,4 +1,4 @@
-package com.ticketgo.constant;
+package com.ticketgo.util.constant;
 
 public class SeatStatusConstant {
     public static final Integer AVAILABLE = 1;

@@ -1,7 +1,7 @@
 package com.ticketgo.controller;
 
 
-import com.ticketgo.common.Result;
+import com.ticketgo.util.common.Result;
 import com.ticketgo.entity.Ticket;
 import com.ticketgo.service.SeatService;
 import com.ticketgo.service.TicketService;
@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import static com.ticketgo.constant.TicketStatusConstant.UNPAID;
+import static com.ticketgo.util.constant.TicketStatusConstant.UNPAID;
 
 /**
  * <p>

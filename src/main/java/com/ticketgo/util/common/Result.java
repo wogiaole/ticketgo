@@ -1,6 +1,5 @@
-package com.ticketgo.common;
+package com.ticketgo.util.common;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

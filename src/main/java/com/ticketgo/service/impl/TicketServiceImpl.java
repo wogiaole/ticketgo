@@ -1,6 +1,6 @@
 package com.ticketgo.service.impl;
 
-import com.ticketgo.common.Result;
+import com.ticketgo.util.common.Result;
 import com.ticketgo.entity.*;
 import com.ticketgo.mapper.StatusMapper;
 import com.ticketgo.mapper.TicketMapper;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static com.ticketgo.constant.SeatStatusConstant.AVAILABLE;
-import static com.ticketgo.constant.TicketStatusConstant.UNPAID;
+import static com.ticketgo.util.constant.SeatStatusConstant.AVAILABLE;
+import static com.ticketgo.util.constant.TicketStatusConstant.UNPAID;
 
 
 /**

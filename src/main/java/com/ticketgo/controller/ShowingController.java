@@ -1,19 +1,15 @@
 package com.ticketgo.controller;
 
 
-import com.ticketgo.common.Result;
-import com.ticketgo.entity.Movie;
+import com.ticketgo.util.common.Result;
 import com.ticketgo.entity.Seat;
 import com.ticketgo.entity.Showing;
-import com.ticketgo.service.MovieService;
 import com.ticketgo.service.SeatService;
 import com.ticketgo.service.ShowingService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 

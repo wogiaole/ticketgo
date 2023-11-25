@@ -1,18 +1,18 @@
 package com.ticketgo.pattern.status.impl;
 
-import com.ticketgo.common.Result;
+import com.ticketgo.util.common.Result;
 import com.ticketgo.pattern.status.Status;
 
 import java.time.LocalDateTime;
 
-import static com.ticketgo.constant.TicketStatusConstant.COMPLETED;
+import static com.ticketgo.util.constant.TicketStatusConstant.COMPLETED;
 
 public class PaidStatus extends Status {
 
 
     @Override
     public Result<String> pay() {
-        return Result.error("Has paid, please refresh and try again!");
+        return Result.error("Ticket has been paid and cannot be pay again");
     }
 
     @Override

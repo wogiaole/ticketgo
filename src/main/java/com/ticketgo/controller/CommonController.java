@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-import com.ticketgo.common.Result;
+import com.ticketgo.util.common.Result;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

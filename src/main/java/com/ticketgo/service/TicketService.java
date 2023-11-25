@@ -1,6 +1,6 @@
 package com.ticketgo.service;
 
-import com.ticketgo.common.Result;
+import com.ticketgo.util.common.Result;
 import com.ticketgo.entity.Ticket;
 import com.baomidou.mybatisplus.extension.service.IService;
 

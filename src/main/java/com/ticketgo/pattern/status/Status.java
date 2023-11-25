@@ -1,6 +1,6 @@
 package com.ticketgo.pattern.status;
 
-import com.ticketgo.common.Result;
+import com.ticketgo.util.common.Result;
 import com.ticketgo.entity.Ticket;
 
 public abstract class Status {

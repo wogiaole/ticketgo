@@ -3,16 +3,13 @@ package com.ticketgo.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ticketgo.common.Result;
-import com.ticketgo.entity.Movie;
+import com.ticketgo.util.common.Result;
 import com.ticketgo.entity.Theather;
 import com.ticketgo.service.TheatherService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
