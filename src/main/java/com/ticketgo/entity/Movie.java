@@ -3,6 +3,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.ticketgo.pattern.composite.MovieComponent;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
@@ -14,7 +19,9 @@ import java.io.Serializable;
  * @author ${author}
  * @since 2023-11-05
  */
-public class Movie extends Model<Movie> {
+
+@NoArgsConstructor
+public class Movie extends Model<Movie> implements MovieComponent  {
 
     private static final long serialVersionUID = 1L;
 
@@ -158,4 +165,10 @@ public class Movie extends Model<Movie> {
         ", isReleased=" + isReleased +
         "}";
     }
+
+    @Override
+    public void displayInfo() {
+
+    }
+
 }

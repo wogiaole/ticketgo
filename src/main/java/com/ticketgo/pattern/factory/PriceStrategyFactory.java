@@ -24,9 +24,7 @@ public class PriceStrategyFactory implements InitializingBean {
 
         return priceStrategies.get(userType);
     }
-
-
-  /*  public static PriceStrategy setStrategy(Integer userType){
+    /*  public static PriceStrategy setStrategy(Integer userType){
         if(userType==2){
             return new StudentPriceStrategy();
         }else if(userType==3){

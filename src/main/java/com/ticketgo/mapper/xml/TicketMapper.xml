@@ -12,11 +12,15 @@
         <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="pay_time" property="payTime" />
+        <result column="pay_method" property="payMethod" />
+        <result column="validate_admin_id" property="validateAdminId" />
+        <result column="validate_time" property="validateTime" />
+        <result column="cancel_time" property="cancelTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ticket_id, user_id, showing_id, seat_id, price, status, create_time, pay_time
+        ticket_id, user_id, showing_id, seat_id, price, status, create_time, pay_time, pay_method, validate_admin_id, validate_time, cancel_time
     </sql>
 
 </mapper>

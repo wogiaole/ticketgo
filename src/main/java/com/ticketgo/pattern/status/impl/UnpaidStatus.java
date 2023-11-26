@@ -1,24 +1,31 @@
 package com.ticketgo.pattern.status.impl;
 
+import com.ticketgo.entity.Ticket;
+import com.ticketgo.pattern.command.PayInvoker;
 import com.ticketgo.util.common.Result;
 import com.ticketgo.pattern.status.Status;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 import static com.ticketgo.util.constant.TicketStatusConstant.*;
 
-@Service
-@Slf4j
+
 public class UnpaidStatus extends Status {
 
+    private PayInvoker payInvoker = new PayInvoker();
+
     @Override
-    public Result<String> pay() {
+    public Result<String> pay(Ticket ticket,Integer payMethod) {
+
+        //调用支付命令
+        payInvoker.setPayCommand(payMethod);
+        payInvoker.executePayment();
 
         //修改票状态
         super.ticket.setStatus(PAID);
         super.ticket.setPayTime(LocalDateTime.now());
+        super.ticket.setPayMethod(payMethod);
 
         return Result.success("pay success");
 

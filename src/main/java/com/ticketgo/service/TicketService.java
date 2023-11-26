@@ -17,7 +17,7 @@ public interface TicketService extends IService<Ticket> {
 
     //public void pay(TicketDTO ticketDTO);
 
-    public Result<String> pay(Long ticketId);
+    public Result<String> pay(Ticket ticket);
     public Result<String> validate(Long ticketId, Long adminId);
     public Result<String> cancel(Long ticketId);
 

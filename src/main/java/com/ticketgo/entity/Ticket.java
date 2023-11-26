@@ -42,6 +42,11 @@ public class Ticket extends Model<Ticket> {
 
     private LocalDateTime payTime;
 
+    /**
+     * 1: credit card; 2: paypal; 3: apple pay
+     */
+    private Integer payMethod;
+
     private LocalDateTime validateTime;
 
     private Long validateAdminId;
@@ -53,9 +58,9 @@ public class Ticket extends Model<Ticket> {
     private PriceStrategy priceStrategy;
 
     //状态模式
-    public Result<String> pay(){
+    public Result<String> pay(Ticket ticket,Integer payMethod){
 
-        return this.ticketStatus.pay();
+        return this.ticketStatus.pay(ticket,payMethod);
     }
     public Result<String> cancel(){
         return this.ticketStatus.cancel();
@@ -161,6 +166,14 @@ public class Ticket extends Model<Ticket> {
         return validateAdminId;
     }
 
+    public Integer getPayMethod() {
+        return payMethod;
+    }
+
+    public void setPayMethod(Integer payMethod) {
+        this.payMethod = payMethod;
+    }
+
     public void setValidateAdminId(Long validateAdminId) {
         this.validateAdminId = validateAdminId;
     }
@@ -173,16 +186,20 @@ public class Ticket extends Model<Ticket> {
     @Override
     public String toString() {
         return "Ticket{" +
-        "ticketId=" + ticketId +
-        ", userId=" + userId +
-        ", showingId=" + showingId +
-        ", seatId=" + seatId +
-        ", price=" + price +
-        ", status=" + status +
-        ", createTime=" + createTime +
-        ", payTime=" + payTime +
-        ", validateTime=" + validateTime +
-        ", cancelTime=" + cancelTime +
-        "}";
+                "ticketId=" + ticketId +
+                ", userId=" + userId +
+                ", showingId=" + showingId +
+                ", seatId=" + seatId +
+                ", price=" + price +
+                ", status=" + status +
+                ", ticketStatus=" + ticketStatus +
+                ", createTime=" + createTime +
+                ", payTime=" + payTime +
+                ", payMethod=" + payMethod +
+                ", validateTime=" + validateTime +
+                ", validateAdminId=" + validateAdminId +
+                ", cancelTime=" + cancelTime +
+                ", priceStrategy=" + priceStrategy +
+                '}';
     }
 }

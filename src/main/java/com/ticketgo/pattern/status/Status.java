@@ -9,7 +9,7 @@ public abstract class Status {
     public void setTicket(Ticket ticket){
         this.ticket=ticket;
     };
-    public abstract Result<String> pay();
+    public abstract Result<String> pay(Ticket ticket,Integer payMethod);
     public abstract Result<String> cancel();
     public abstract Result<String> validate();
 }

@@ -52,7 +52,8 @@ public class TicketController {
 
         //支付
 
-        return ticketService.pay(ticket.getTicketId());
+       // return ticketService.pay(ticket.getTicketId());
+       return ticketService.pay(ticket);
     }
 
     @PostMapping("/validate")

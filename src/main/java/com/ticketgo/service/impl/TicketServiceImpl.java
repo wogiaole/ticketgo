@@ -36,9 +36,10 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     private PriceCalculateService priceCalculateService;
 
     @Override
-    public Result<String> pay(Long ticketId) {
+    public Result<String> pay(Ticket t) {
 
-        Ticket ticket = this.getById(ticketId);
+        //get ticket
+        Ticket ticket = this.getById(t.getTicketId());
         log.info("ticket info={}",ticket);
 
         //state pattern
@@ -46,7 +47,9 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
         log.info("The current ticket status is{}",status);
         //setTicketStatus base on mapping
         ticket.setTicketStatus(StatusMapper.mapIntToStatus(status));
-        Result<String> r = ticket.pay();
+
+        //call pay()
+        Result<String> r = ticket.pay(ticket,t.getPayMethod());
 
         //if pay success
         if(r.getCode()==1){
