@@ -13,18 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class PriceStrategyFactory implements InitializingBean {
+public class PriceStrategyFactory /*implements InitializingBean*/ {
 
-    @Autowired
-    private ApplicationContext applicationContext;
 
-    private final Map<Integer,PriceStrategy> priceStrategies = new HashMap();
-
-    public PriceStrategy chooseStrategy(Integer userType){
-
-        return priceStrategies.get(userType);
-    }
-    /*  public static PriceStrategy setStrategy(Integer userType){
+      public static PriceStrategy chooseStrategy(Integer userType){
         if(userType==2){
             return new StudentPriceStrategy();
         }else if(userType==3){
@@ -33,16 +25,26 @@ public class PriceStrategyFactory implements InitializingBean {
             return new AdultPriceStrategy();
         }
 
-    }*/
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-
-        //get PriceStrage bean from IOC
-        Map<String, PriceStrategy> priceStrategyMap = applicationContext.getBeansOfType(PriceStrategy.class);
-
-        //a mapping between user type and priceStrategy
-        priceStrategyMap.forEach((key,val)->priceStrategies.put(val.mark(),val));
-
     }
+
+    //    @Autowired
+//    private ApplicationContext applicationContext;
+//
+//    private final Map<Integer,PriceStrategy> priceStrategies = new HashMap();
+
+//    public PriceStrategy chooseStrategy(Integer userType){
+//
+//        return priceStrategies.get(userType);
+//    }
+
+//    @Override
+//    public void afterPropertiesSet() throws Exception {
+//
+//        //get PriceStrage bean from IOC
+//        Map<String, PriceStrategy> priceStrategyMap = applicationContext.getBeansOfType(PriceStrategy.class);
+//
+//        //a mapping between user type and priceStrategy
+//        priceStrategyMap.forEach((key,val)->priceStrategies.put(val.mark(),val));
+//
+//    }
 }

@@ -20,10 +20,7 @@ import java.time.LocalDateTime;
  * @since 2023-11-05
  */
 public class Ticket extends Model<Ticket> {
-
-    private static final long serialVersionUID = 1L;
-
-      @TableId(value = "ticket_id", type = IdType.AUTO)
+    @TableId(value = "ticket_id", type = IdType.AUTO)
     private Long ticketId;
 
     private Long userId;

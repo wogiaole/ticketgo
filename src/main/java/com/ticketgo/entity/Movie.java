@@ -23,9 +23,7 @@ import java.io.Serializable;
 
 public class Movie extends Model<Movie> {
 
-    private static final long serialVersionUID = 1L;
-
-      @TableId(value = "movie_id", type = IdType.AUTO)
+    @TableId(value = "movie_id", type = IdType.AUTO)
     private Long movieId;
 
     private String movieName;

@@ -28,18 +28,12 @@ public class TicketController {
 
     @Autowired
     private TicketService ticketService;
-
     @Autowired
     private SeatService seatService;
-    /**
-     * 新增ticket
-     * @return
-     */
-    @PostMapping("/addTicket")
-    @Operation(description = "订票")
-    public Result<String> save(@RequestBody Ticket ticket){
 
-        log.info("{}",ticket);
+    @PostMapping("/addTicket")
+    @Operation(description = "book ticket")
+    public Result<String> save(@RequestBody Ticket ticket){
 
         ticket.setStatus(UNPAID);
 
@@ -47,12 +41,9 @@ public class TicketController {
     }
 
     @PostMapping("/pay")
-    @Operation(description = "支付")
+    @Operation(description = "pay")
     public Result<String> pay(@RequestBody Ticket ticket){
 
-        //支付
-
-       // return ticketService.pay(ticket.getTicketId());
        return ticketService.pay(ticket);
     }
 
