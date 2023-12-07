@@ -20,8 +20,8 @@ import java.io.Serializable;
  * @since 2023-11-05
  */
 
-@NoArgsConstructor
-public class Movie extends Model<Movie> implements MovieComponent  {
+
+public class Movie extends Model<Movie> {
 
     private static final long serialVersionUID = 1L;
 
@@ -166,9 +166,5 @@ public class Movie extends Model<Movie> implements MovieComponent  {
         "}";
     }
 
-    @Override
-    public void displayInfo() {
-
-    }
 
 }
