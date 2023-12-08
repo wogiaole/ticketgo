@@ -56,7 +56,7 @@ public class PriceCalculateService {
         Showing showing = showingService.getById(ticket.getShowingId());
 
         //1. factory, strategy: Set price strategy based on user type
-        PriceStrategy priceStrategy1 = priceStrategyFactory.chooseStrategy(user.getType());
+        PriceStrategy priceStrategy1 = PriceStrategyFactory.chooseStrategy(user.getType());
         ticket.setPriceStrategy(priceStrategy1);
         //get price after applying strategy
         BigDecimal price = showing.getPrice();

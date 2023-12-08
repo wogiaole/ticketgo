@@ -96,7 +96,5 @@ public class ShowingServiceImpl extends ServiceImpl<ShowingMapper, Showing> impl
         Movie movie = movieService.getById(showing.getMovieId());
         Integer duration = movie.getDuration();
         showing.setEndTime(showing.getStartTime().plusMinutes(duration));
-
-
     }
 }

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Slf4j
 public class BirthdayDecorator extends PriceDecorator {
    // private static final int COST = 1;
-    private PriceStrategy priceStrategy;
+    private final PriceStrategy priceStrategy;
 
     public BirthdayDecorator(PriceStrategy priceStrategy) {
         this.priceStrategy = priceStrategy;

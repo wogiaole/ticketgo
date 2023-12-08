@@ -9,6 +9,7 @@ import com.ticketgo.service.TheatherService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +18,15 @@ import java.util.List;
 @RequestMapping("/theather")
 @Slf4j
 public class TheatherController {
+    /*
+    Inject theater Service via constructor
+    * */
+    private final TheatherService theatherService;
+
     @Autowired
-    private TheatherService theatherService;
+    public TheatherController(TheatherService theatherService) {
+        this.theatherService = theatherService;
+    }
 
     /**
      * 新增放映厅
@@ -28,6 +36,7 @@ public class TheatherController {
     @PostMapping("/addTheater")
     @Operation(description = "新增放映厅")
     public Result<String> save(@RequestBody Theather theather){
+        Assert.notNull(theather, "Theather must not be null");
         log.info("新增电影 info: "+theather);
         theather.setIsDeleted(false);
         theatherService.save(theather);

@@ -71,6 +71,11 @@ public class User extends Model<User> implements Observer {
         this.type = type;
     }
 
+    @Override
+    public void update(String movieName) {
+
+    }
+
     public String getEmail() {
         return email;
     }
