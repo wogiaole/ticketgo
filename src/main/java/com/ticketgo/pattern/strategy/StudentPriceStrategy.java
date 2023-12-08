@@ -16,7 +16,6 @@ public class StudentPriceStrategy extends PriceStrategy{
 
     @Override
     public BigDecimal calculatePrice() {
-
        log.info("student: 20% off");
         super.setPrice(super.getPrice().multiply(new BigDecimal("0.8")));
         return super.getPrice();

@@ -12,16 +12,11 @@ public class ChildPriceStrategy extends PriceStrategy{
     public Integer mark() {
         return 3;
     }
-
     //儿童便宜2快
     @Override
     public BigDecimal calculatePrice() {
-
         log.info("child: reduce 2");
         super.setPrice(super.getPrice().subtract(new BigDecimal("2.0")));
         return super.getPrice();
-
-
-
     }
 }

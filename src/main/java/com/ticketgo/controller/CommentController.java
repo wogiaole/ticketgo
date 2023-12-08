@@ -49,10 +49,7 @@ public class CommentController {
         //set user id
         HttpSession session = request.getSession();
         Long userId = (Long)session.getAttribute("userId");
-
         log.info("{}",userId);
-
-        //Long userId = (Long)request.getSession().getAttribute("userId");
         comment.setUserId(userId);
         //save
         commentService.save(comment);
@@ -85,7 +82,45 @@ public class CommentController {
 
         return Result.success(pageInfo);
     }
+    // 封装设置评论详细信息的逻辑
+    private void setCommentDetails(Comment comment, HttpServletRequest request) {
+        // 设置当前时间
+        comment.setCreateTime(LocalDateTime.now());
+        // 设置状态
+        comment.setIsDeleted(false);
+        // 设置用户ID
+        HttpSession session = request.getSession();
+        Long userId = (Long) session.getAttribute("userId");
+        comment.setUserId(userId);
+    }
 
+    // 封装构建基于电影的评论查询条件的逻辑
+    private LambdaQueryWrapper<Comment> buildMovieCommentQuery(long movieId) {
+        LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Comment::getMovieId, movieId);
+        queryWrapper.eq(Comment::getIsDeleted, false);
+        queryWrapper.orderByAsc(Comment::getCreateTime);
+        return queryWrapper;
+    }
+
+    // 封装构建查询所有评论的逻辑
+    private LambdaQueryWrapper<Comment> buildAllCommentQuery() {
+        LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.orderByAsc(Comment::getCreateTime);
+        return queryWrapper;
+    }
+
+    // 封装设置删除评论详细信息的逻辑
+    private void setDeleteCommentDetails(Comment comment, HttpServletRequest request) {
+        // 设置删除时间
+        comment.setDeleteTime(LocalDateTime.now());
+        // 设置状态为删除
+        comment.setIsDeleted(true);
+        // 设置管理员ID
+        HttpSession session = request.getSession();
+        Long adminId = (Long) session.getAttribute("adminId");
+        comment.setAdminId(adminId);
+    }
 
 
     /**

@@ -9,20 +9,28 @@ import com.ticketgo.service.ShowingService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/*
+* Split the functionality of the showingController to make it more aligned
+*  with a single responsibility
+* */
 
 @RestController
 @RequestMapping("/showing")
 @Slf4j
 public class ShowingController {
-    @Autowired
-    private ShowingService showingService;
+    private final ShowingService showingService;
+    private final SeatService seatService;
 
     @Autowired
-    private SeatService seatService;
+    public ShowingController(ShowingService showingService, SeatService seatService) {
+        this.showingService = showingService;
+        this.seatService = seatService;
+    }
+
 
     /**
      * 新增场次
@@ -30,7 +38,7 @@ public class ShowingController {
     @PostMapping("/addShowing")
     @Operation(description = "新增场次")
     public Result<String> save(@RequestBody Showing showing){
-
+        Assert.notNull(showing, "Showing must not be null");
         //1. set endTime
         showingService.setEndTime(showing);
 
@@ -57,6 +65,7 @@ public class ShowingController {
     @PutMapping
     @Operation(description = "修改场次信息，修改+上下架共用这个接口")
     public Result<String> updateUser(@RequestBody Showing showing){
+        Assert.notNull(showing, "Showing must not be null");
         //1. 判断当前是否存在场次
         boolean exist = showingService.ifExist(showing);
         //2. 如果时间段已安排场次，则报错
@@ -68,20 +77,15 @@ public class ShowingController {
         showingService.updateById(showing);
         return Result.success("modify showing successfully");
     }
-
     /**
      * 场次详情（选座图）
      */
     @GetMapping("/seats")
     @Operation(description = "查看场次的座位")
     public Result<List<Seat>> seats(Integer showingId){
-
+        Assert.notNull(showingId, "Showing ID must not be null");
         List<Seat> seats = seatService.getSeatByShowingId(showingId);
-
         return Result.success(seats);
-
     }
-
-
 }
 

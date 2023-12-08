@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 
 public class ApplePayCommand implements PayCommand{
-    private PayReciver payReciver = new PayReciver();
+    private final PayReciver payReciver = new PayReciver();
     @Override
     public void execute() {
         payReciver.applePay();

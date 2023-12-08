@@ -24,4 +24,5 @@ public interface ShowingService extends IService<Showing> {
     //为showing设置endTime
     public void setEndTime(Showing showing);
 
+
 }

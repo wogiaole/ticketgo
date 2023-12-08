@@ -1,6 +1,7 @@
 package com.ticketgo.controller;
 
 
+import com.ticketgo.service.TheatherService;
 import com.ticketgo.util.common.Result;
 import com.ticketgo.entity.Ticket;
 import com.ticketgo.service.SeatService;
@@ -12,24 +13,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import static com.ticketgo.util.constant.TicketStatusConstant.UNPAID;
-
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author ${author}
- * @since 2023-11-02
- */
 @Slf4j
 @RestController
 @RequestMapping("/ticket")
 public class TicketController {
-
+    /*
+    Inject theater Service via constructor
+    * */
+    private final TicketService ticketService;
     @Autowired
-    private TicketService ticketService;
-    @Autowired
-    private SeatService seatService;
+    public TicketController(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
 
     @PostMapping("/addTicket")
     @Operation(description = "book ticket")
@@ -50,8 +45,7 @@ public class TicketController {
     @PostMapping("/validate")
     @Operation(description = "验票")
     public Result<String> validate(@RequestBody Ticket ticket, HttpServletRequest request){
-        Long adminId = (Long)request.getSession().getAttribute("adminId");//1
-        // log.info("打印DTO{}",ticketDTO);
+        Long adminId = (Long)request.getSession().getAttribute("adminId");
 
         return ticketService.validate(ticket.getTicketId(),adminId);
     }
@@ -59,25 +53,7 @@ public class TicketController {
     @PostMapping("/cancel")
     @Operation(description = "取消票")
     public Result<String> cancel(@RequestBody Ticket ticket){
-
-        // log.info("打印DTO{}",ticketDTO);
-
-
         return ticketService.cancel(ticket.getTicketId());
     }
-
-    /*@GetMapping("/sendEmail")
-    public Result<String> sendEmail() {
-        String to = "lftang1007@gmail.com"; // 接收者的邮箱地址
-        String subject = "hello";
-        String body = "test";
-
-        emailService.sendEmail(to, subject, body);
-        return Result.success("发送成功");
-    }*/
-
-
-
-
 }
 

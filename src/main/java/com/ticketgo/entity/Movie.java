@@ -3,7 +3,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.ticketgo.pattern.composite.MovieComponent;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;

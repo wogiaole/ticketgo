@@ -8,12 +8,22 @@ import java.time.LocalDateTime;
 
 import static com.ticketgo.util.constant.TicketStatusConstant.COMPLETED;
 
-public class PaidStatus extends Status {
+public class PaidStatus extends Status implements TicketStatus {
 
 
     @Override
     public Result<String> pay(Ticket ticket,Integer payMethod) {
         return Result.error("Ticket has been paid and cannot be pay again");
+    }
+
+    @Override
+    public Result<String> cancel(Ticket ticket) {
+        return null;
+    }
+
+    @Override
+    public Result<String> validate(Ticket ticket) {
+        return null;
     }
 
     @Override

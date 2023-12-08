@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -43,7 +44,6 @@ public class AdminController {
 
     @PostMapping("/login")
     @Operation(description = "admin登录")
-
     //RequestBody：接受前端对象，封装成admin对象
     //httpservletrequest:将admin对象的id存入session，用于登陆后获取当前对象
     public Result<Admin> login(HttpServletRequest request, @RequestBody Admin admin){
@@ -52,20 +52,29 @@ public class AdminController {
         qw.eq(Admin::getAdminName,admin.getAdminName());
         Admin admResult = adminService.getOne(qw);
 
+        Assert.notNull(admResult,"Input must not be null");
         //2.查询失败，返回错误结果
-        if(admResult==null){
-            return Result.error("查询不到用户名");//如果查询为空，登录失败
-        }
         //3.查询成功，比对密码
-        if(!admResult.getPassword().equals(admin.getPassword())){
-            return Result.error("密码错误");//4.比对失败，返回错误结果
-
-            }else{//5.比对成功，将员工id存入session+返回成功结果
-                request.getSession().setAttribute("adminId",admResult.getAdminId());
-           // Object admin1 = request.getSession().getAttribute("admin");
+        if (isValidPassword(admin, admResult)) {
+            request.getSession().setAttribute("adminId", admResult.getAdminId());
             return Result.success(admResult);
-            }
+        } else {
+            return Result.error("密码错误");
         }
+    }
+
+    // 封装构建登录查询条件的逻辑
+    private LambdaQueryWrapper<Admin> buildLoginQuery(String adminName) {
+        LambdaQueryWrapper<Admin> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Admin::getAdminName, adminName);
+        return queryWrapper;
+    }
+
+    // 封装密码验证逻辑
+    private boolean isValidPassword(Admin inputAdmin, Admin resultAdmin) {
+        return resultAdmin.getPassword().equals(inputAdmin.getPassword());
+    }
+
 
     /**
      * 登出

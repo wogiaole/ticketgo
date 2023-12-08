@@ -1,13 +1,12 @@
 package com.ticketgo.pattern.strategy;
 
+import lombok.Getter;
+
 import java.math.BigDecimal;
 
-public abstract class PriceStrategy {
+@Getter
+public abstract class PriceStrategy implements PricedItem {
     private BigDecimal price;
-
-    public BigDecimal getPrice() {
-        return price;
-    }
 
     public void setPrice(BigDecimal price) {
         this.price = price;

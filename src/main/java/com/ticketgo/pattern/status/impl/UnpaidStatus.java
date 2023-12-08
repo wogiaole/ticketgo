@@ -13,7 +13,7 @@ import static com.ticketgo.util.constant.TicketStatusConstant.*;
 
 public class UnpaidStatus extends Status {
 
-    private PayInvoker payInvoker = new PayInvoker();
+    private final PayInvoker payInvoker = new PayInvoker();
 
     @Override
     public Result<String> pay(Ticket ticket,Integer payMethod) {
@@ -32,6 +32,16 @@ public class UnpaidStatus extends Status {
     }
 
     @Override
+    public Result<String> cancel(Ticket ticket) {
+        return null;
+    }
+
+    @Override
+    public Result<String> validate(Ticket ticket) {
+        return null;
+    }
+
+    @Override
     public Result<String> cancel() {
 
         //修改票状态
@@ -44,8 +54,6 @@ public class UnpaidStatus extends Status {
 
     @Override
     public Result<String> validate() {
-
         return Result.error("Unpaid ticket cannot be verified!");
-
     }
 }
